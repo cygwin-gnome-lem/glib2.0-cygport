@@ -3,7 +3,7 @@ inherit gnome2 python
 
 NAME="glib2.0"
 VERSION=2.46.2
-RELEASE=3
+RELEASE=4
 CATEGORY="Libs"
 SUMMARY="GNOME core C function library"
 DESCRIPTION="GLib is the low-level core library that forms the basis for
@@ -22,6 +22,7 @@ PATCH_URI="
 	2.36.4-gutf8-cygwin.patch
 	2.38.2-gconvert-cygwin.patch
 	2.46-glocalfilemonitor.patch
+	2.46-fam-debug.patch
 "
 #	2.36.4-gsocket-cygwin.patch  # requires abstract sockets
 
