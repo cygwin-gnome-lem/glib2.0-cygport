@@ -2,8 +2,8 @@ ORIG_PN="glib"
 inherit gnome2 python
 
 NAME="glib2.0"
-VERSION=2.46.2
-RELEASE=4
+VERSION=2.50.3
+RELEASE=1
 CATEGORY="Libs"
 SUMMARY="GNOME core C function library"
 DESCRIPTION="GLib is the low-level core library that forms the basis for
@@ -13,7 +13,7 @@ an event loop, threads, dynamic loading, and an object system."
 HOMEPAGE="http://www.gtk.org/"
 
 PATCH_URI="
-	2.38.2-gmodule-cygwin.patch
+	2.50-gmodule-cygwin.patch
 	2.36.3-not-win32.patch
 	2.36.4-gspawn-cygwin.patch
 	2.42.1-goption-cygwin.patch
@@ -21,7 +21,6 @@ PATCH_URI="
 	2.36.3-visibility.patch
 	2.36.4-gutf8-cygwin.patch
 	2.38.2-gconvert-cygwin.patch
-	2.46-glocalfilemonitor.patch
 	2.46-fam-debug.patch
 "
 #	2.36.4-gsocket-cygwin.patch  # requires abstract sockets
@@ -50,26 +49,48 @@ CYGCONF_ARGS="
 PKG_NAMES="lib${NAME}_0 lib${NAME}-devel lib${NAME}-doc"
 libglib2_0_0_SUMMARY="${SUMMARY} (runtime)"
 libglib2_0_0_REQUIRES="desktop-file-utils gsettings-desktop-schemas shared-mime-info tzdata"
-libglib2_0_0_CONTENTS="etc/ usr/bin/*.dll usr/bin/gapplication.exe
-                       usr/bin/gdbus.exe usr/bin/gio-querymodules.exe
-                       usr/bin/glib-compile-schemas.exe usr/bin/gobject-query.exe
-                       usr/bin/gsettings.exe usr/lib/gio/ usr/share/doc/
-                       usr/share/glib-2.0/schemas usr/share/locale/
-                       usr/share/man/man1/gapplication.*
-                       usr/share/man/man1/gdbus.* usr/share/man/man1/gio*
-                       usr/share/man/man1/glib-compile-schemas*
-                       usr/share/man/man1/gobject* usr/share/man/man1/gsettings.*"
+libglib2_0_0_CONTENTS="
+	etc/
+	usr/bin/cyg*-2.0-0.dll
+	usr/bin/gapplication.exe
+	usr/bin/gdbus.exe
+	usr/bin/gio.exe
+	usr/bin/gio-querymodules.exe
+	usr/bin/glib-compile-schemas.exe
+	usr/bin/gobject-query.exe
+	usr/bin/gsettings.exe
+	usr/lib/gio/
+	usr/share/doc/
+	usr/share/glib-2.0/schemas/
+	usr/share/locale/
+	usr/share/man/man1/gapplication.*
+	usr/share/man/man1/gdbus.*
+	usr/share/man/man1/gio*
+	usr/share/man/man1/glib-compile-schemas*
+	usr/share/man/man1/gobject*
+	usr/share/man/man1/gsettings.*
+"
 libglib2_0_devel_SUMMARY="${SUMMARY} (development)"
-libglib2_0_devel_CONTENTS="--exclude=modules --exclude=schemas --exclude=gdb
-                           --exclude=glib-compile-schemas.[^html]*
-                           usr/bin/gdbus-codegen usr/bin/glib-*
-                           usr/bin/gresource* usr/bin/gtester*
-                           usr/include/ usr/lib/ usr/share/aclocal/
-                           usr/share/glib-2.0/
-                           usr/share/man/man1/gdbus-codegen*
-                           usr/share/man/man1/glib-*
-                           usr/share/man/man1/gresource*
-                           usr/share/man/man1/gtester*"
+libglib2_0_devel_CONTENTS="
+	--exclude=glib-compile-schemas.[^html]*
+	usr/bin/gdbus-codegen
+	usr/bin/glib-*
+	usr/bin/gresource*
+	usr/bin/gtester*
+	usr/include/gio-unix-2.0/
+	usr/include/glib-2.0/
+	usr/lib/glib-2.0/include/
+	usr/lib/lib*-2.0.dll.a
+	usr/lib/pkgconfig/*
+	usr/share/aclocal/
+	usr/share/gettext/
+	usr/share/glib-2.0/codegen/
+	usr/share/glib-2.0/gettext/
+	usr/share/man/man1/gdbus-codegen*
+	usr/share/man/man1/glib-*
+	usr/share/man/man1/gresource*
+	usr/share/man/man1/gtester*
+"
 libglib2_0_doc_CATEGORY="Doc"
 libglib2_0_doc_CONTENTS="usr/share/gtk-doc/"
 glib2_0_debuginfo_CONTENTS+=" usr/share/glib-2.0/gdb/"
