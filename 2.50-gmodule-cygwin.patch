@@ -98,7 +98,7 @@
  }
  
  static gpointer
-@@ -121,8 +156,18 @@ find_in_any_module_using_toolhelp (const
+@@ -121,8 +156,19 @@ find_in_any_module_using_toolhelp (const
    if (Module32First (snapshot, &me32))
      {
        do {
@@ -110,7 +110,8 @@
 +	  ssize_t size = cygwin_conv_path (CCP_WIN_A_TO_POSIX, me32.szExePath, NULL, 0);
 +	  char *posix = (char *) alloca (size);
 +	  cygwin_conv_path (CCP_WIN_A_TO_POSIX, me32.szExePath, posix, size);
-+	  if (g_strstr_len (posix, size, "/usr/lib"))
++	  if (g_strstr_len (posix, size, "/usr/lib")
++	      || g_strstr_len (posix, size, "/usr/local/lib"))
 +	    p = NULL;
 +	  else
 +#endif
