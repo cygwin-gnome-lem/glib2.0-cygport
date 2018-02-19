@@ -2,7 +2,7 @@ ORIG_PN="glib"
 inherit gnome2 python
 
 NAME="glib2.0"
-VERSION=2.52.3
+VERSION=2.54.3
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="GNOME core C function library"
@@ -93,6 +93,9 @@ libglib2_0_devel_CONTENTS="
 libglib2_0_doc_CATEGORY="Doc"
 libglib2_0_doc_CONTENTS="usr/share/gtk-doc/"
 glib2_0_debuginfo_CONTENTS+=" usr/share/glib-2.0/gdb/"
+PKG_IGNORE="
+	usr/share/glib-2.0/valgrind/
+"
 
 src_install() {
 	local giomodule_cache=/usr/lib/gio/modules/giomodule.cache
