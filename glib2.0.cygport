@@ -115,8 +115,11 @@ src_install() {
 	local giomodule_cache=/usr/lib/gio/modules/giomodule.cache
 	local gschemas_compiled=/usr/share/glib-2.0/schemas/gschemas.compiled
 
+	cd ${S}
+	meson_install
+
 	cd ${B}
-	cyginstall completiondir=/etc/bash_completion.d
+	#cyginstall completiondir=/etc/bash_completion.d
 
 	rm -f ${D}/usr/lib/charset.alias
 
