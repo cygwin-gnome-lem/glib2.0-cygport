@@ -1,8 +1,8 @@
 ORIG_PN="glib"
-inherit gnome2 python
+inherit gnome2 meson python3
 
 NAME="glib2.0"
-VERSION=2.54.3
+VERSION=2.66.0
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="GNOME core C function library"
@@ -13,15 +13,16 @@ an event loop, threads, dynamic loading, and an object system."
 HOMEPAGE="http://www.gtk.org/"
 
 PATCH_URI="
-	2.50-gmodule-cygwin.patch
-	2.36.3-not-win32.patch
-	2.36.4-gspawn-cygwin.patch
-	2.42.1-goption-cygwin.patch
 	2.34.3-m4macros.patch
-	2.36.3-visibility.patch
-	2.36.4-gutf8-cygwin.patch
 	2.38.2-gconvert-cygwin.patch
+	2.66.0-gmodule-cygwin.patch
+	2.66.0-gspawn-cygwin.patch
 "
+#	2.36.3-not-win32.patch       # no more necessary? https://gitlab.gnome.org/GNOME/glib/-/merge_requests/736
+#	2.36.3-visibility.patch      # no more necessary?
+#	2.36.4-gutf8-cygwin.patch    # this seems also to be fixed.
+#	2.42.1-goption-cygwin.patch  # no more necessary?
+
 #	2.36.4-gsocket-cygwin.patch  # requires abstract sockets
 
 DEPEND="gnome-common
@@ -32,18 +33,31 @@ DEPEND="gnome-common
 	libpcre-devel
 	zlib-devel"
 
+BUILD_REQUIRES+="\
+	meson\
+	ninja\
+\
+	gnome-common\
+	gettext\
+	gettext-devel\
+	libfam-devel\
+	libiconv\
+	libpcre-devel\
+	zlib-devel\
+"
+
 DISTCLEANFILES="gmodule/gmodule-cygwin.c gio/gdbus-2.0/codegen/config.py"
 
 # libelf: for gresource(1), only useful on ELF platforms
-CYGCONF_ARGS="
-	--disable-visibility
-	--disable-libelf
-	--with-libiconv=gnu
-	--with-pcre=system
-	--with-threads=posix
-	ac_cv_header_winsock2_h=no
-	ac_cv_header_mswsock_h=no
+CYGMESON_ARGS="
 "
+#	ac_cv_header_mswsock_h=no
+#	ac_cv_header_winsock2_h=no
+#	--disable-libelf
+#	--with-threads=posix
+#	--with-pcre=system
+#	--disable-visibility
+#	--with-libiconv=gnu
 
 PKG_NAMES="lib${NAME}_0 lib${NAME}-devel lib${NAME}-doc"
 libglib2_0_0_SUMMARY="${SUMMARY} (runtime)"
