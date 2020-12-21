@@ -12,12 +12,12 @@ portability wrappers, and interfaces for such runtime functionality as
 an event loop, threads, dynamic loading, and an object system."
 HOMEPAGE="http://www.gtk.org/"
 
-PATCH_URI="
-	2.34.3-m4macros.patch
-	2.38.2-gconvert-cygwin.patch
-	2.67.1-gmodule-cygwin.patch
-	2.67.1-gspawn-cygwin.patch
-"
+#PATCH_URI="
+#	2.34.3-m4macros.patch
+#	2.38.2-gconvert-cygwin.patch
+#	2.67.1-gmodule-cygwin.patch
+#	2.67.1-gspawn-cygwin.patch
+#"
 #	2.36.3-not-win32.patch       # no more necessary? https://gitlab.gnome.org/GNOME/glib/-/merge_requests/736
 #	2.36.3-visibility.patch      # no more necessary?
 #	2.36.4-gutf8-cygwin.patch    # this seems also to be fixed.
@@ -37,9 +37,6 @@ BUILD_REQUIRES+="\
 	meson\
 	ninja\
 \
-	gnome-common\
-	gettext\
-	gettext-devel\
 	libfam-devel\
 	libiconv\
 	libpcre-devel\
@@ -50,6 +47,7 @@ DISTCLEANFILES="gmodule/gmodule-cygwin.c gio/gdbus-2.0/codegen/config.py"
 
 # libelf: for gresource(1), only useful on ELF platforms
 CYGMESON_ARGS="
+  -Dlibelf=disabled
 "
 #	ac_cv_header_mswsock_h=no
 #	ac_cv_header_winsock2_h=no
