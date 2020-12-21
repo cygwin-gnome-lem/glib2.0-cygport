@@ -1,0 +1,20 @@
+--- origsrc/glib-2.67.1/glib/gspawn.c	2020-12-17 04:24:11.084540000 +0900
++++ src/glib-2.67.1/glib/gspawn.c	2020-12-21 20:08:59.345018700 +0900
+@@ -1230,7 +1230,7 @@
+   struct rlimit rl;
+ #endif
+ 
+-#ifdef __linux__
++#if defined(__linux__) || defined(__CYGWIN__)
+   /* Avoid use of opendir/closedir since these are not async-signal-safe. */
+   int dir_fd = open ("/proc/self/fd", O_RDONLY | O_DIRECTORY);
+   if (dir_fd >= 0)
+@@ -1273,7 +1273,7 @@
+   if (getrlimit (RLIMIT_NOFILE, &rl) == 0 && rl.rlim_max != RLIM_INFINITY)
+     open_max = rl.rlim_max;
+ #endif
+-#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__APPLE__)
++#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__APPLE__) || defined(__CYGWIN__)
+   /* Use sysconf() function provided by the system if it is known to be
+    * async-signal safe.
+    *

@@ -2,7 +2,7 @@ ORIG_PN="glib"
 inherit gnome2 meson python3
 
 NAME="glib2.0"
-VERSION=2.66.0
+VERSION=2.67.1
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="GNOME core C function library"
@@ -15,8 +15,8 @@ HOMEPAGE="http://www.gtk.org/"
 PATCH_URI="
 	2.34.3-m4macros.patch
 	2.38.2-gconvert-cygwin.patch
-	2.66.0-gmodule-cygwin.patch
-	2.66.0-gspawn-cygwin.patch
+	2.67.1-gmodule-cygwin.patch
+	2.67.1-gspawn-cygwin.patch
 "
 #	2.36.3-not-win32.patch       # no more necessary? https://gitlab.gnome.org/GNOME/glib/-/merge_requests/736
 #	2.36.3-visibility.patch      # no more necessary?

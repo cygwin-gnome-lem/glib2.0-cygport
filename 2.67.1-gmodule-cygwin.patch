@@ -1,5 +1,6 @@
---- origsrc/glib-2.66.0/gmodule/gmodule-win32.c	2020-09-10 19:42:41.656685400 +0900
-+++ src/glib-2.66.0/gmodule/gmodule-win32.c	2020-09-27 18:08:22.445493100 +0900
+diff -ur origsrc/glib-2.67.1/gmodule/gmodule-win32.c src/glib-2.67.1/gmodule/gmodule-win32.c
+--- origsrc/glib-2.67.1/gmodule/gmodule-win32.c	2020-12-17 04:24:11.133540200 +0900
++++ src/glib-2.67.1/gmodule/gmodule-win32.c	2020-12-21 20:08:59.113005400 +0900
 @@ -37,7 +37,21 @@
  
  #ifdef G_WITH_CYGWIN
@@ -101,7 +102,7 @@
  }
  
  static gpointer
-@@ -139,8 +175,19 @@
+@@ -152,8 +188,19 @@
    if (Module32First (snapshot, &me32))
      {
        do {
@@ -123,7 +124,7 @@
        } while (Module32Next (snapshot, &me32));
      }
  
-@@ -167,6 +214,13 @@
+@@ -180,6 +227,13 @@
  {
    gpointer p;
    
@@ -137,7 +138,7 @@
    if (handle == null_module_handle)
      {
        if ((p = GetProcAddress (GetModuleHandle (NULL), symbol_name)) == NULL)
-@@ -177,6 +231,7 @@
+@@ -190,6 +244,7 @@
  
    if (!p)
      set_error ("");
